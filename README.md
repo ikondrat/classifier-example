@@ -1,24 +1,24 @@
-# FastAPI Seed Project
+# 🤖 Classifier Demo
 
-A modern FastAPI-based application template with built-in support for machine learning models using PyTorch and Transformers.
+This is a demo project for a classifier API. It uses a pre-trained model to classify text into categories.
 
-## Features
+## ✨ Features
 
-- FastAPI framework for high-performance API development
-- PyTorch integration for machine learning capabilities
-- Transformers library support for state-of-the-art NLP models
-- Modern development tooling:
-  - Ruff for linting and formatting
-  - MyPy for type checking
-  - Pytest for testing
-  - UV for dependency management
+- 🚀 FastAPI framework for high-performance API development
+- 🔥 PyTorch integration for machine learning capabilities
+- 🤖 Transformers library support for state-of-the-art NLP models
+- 🛠️ Modern development tooling:
+  - ✨ Ruff for linting and formatting
+  - 📝 MyPy for type checking
+  - ✅ Pytest for testing
+  - 📦 UV for dependency management
 
-## Prerequisites
+## 📋 Prerequisites
 
-- Python 3.12 or higher ([Download](https://www.python.org/downloads/))
-- UV package manager ([Installation Guide](https://github.com/astral-sh/uv#installation))
+- 🐍 Python 3.12 or higher ([Download](https://www.python.org/downloads/))
+- 📦 UV package manager ([Installation Guide](https://github.com/astral-sh/uv#installation))
 
-## Installation
+## 🚀 Installation
 
 1. Clone the repository:
 
@@ -35,7 +35,7 @@ make install
 
 This will install all required dependencies using UV package manager.
 
-## Development
+## 💻 Development
 
 The project includes several development commands:
 
@@ -75,7 +75,7 @@ make format
 make validate
 ```
 
-## Project Structure
+## 📁 Project Structure
 
 ```
 classifier_demo/
