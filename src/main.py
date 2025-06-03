@@ -4,9 +4,9 @@ from contextlib import asynccontextmanager
 
 from fastapi import FastAPI
 
-from classifier_demo.api import content_moderation
-from classifier_demo.middleware.rps_tracker import RPSTrackerMiddleware
-from classifier_demo.services.content_moderation import ContentModerationService
+from api import content_moderation
+from middleware.rps_tracker import RPSTrackerMiddleware
+from services.content_moderation import ContentModerationService
 
 app = FastAPI(title="Heroes and Movies API")
 

@@ -9,10 +9,11 @@
             "type": "debugpy",
             "request": "launch",
             "module": "uvicorn",
-            "args": ["classifier_demo.main:app", "--reload", "--port", "8001"],
+            "args": ["main:app", "--reload", "--port", "8001"],
             "envFile": "${workspaceFolder}/.env",
             "python": "${workspaceFolder}/.venv/bin/python",
+            "cwd": "${workspaceFolder}/src",
             "jinja": true
-        },
+        }
     ]
 }
