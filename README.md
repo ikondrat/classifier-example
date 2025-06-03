@@ -85,11 +85,3 @@ classifier_demo/
 ├── Makefile           # Development commands
 └── README.md          # This file
 ```
-
-## License
-
-[Add your license information here]
-
-## Contributing
-
-[Add contribution guidelines here]
