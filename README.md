@@ -77,11 +77,24 @@ make validate
 
 ## 📁 Project Structure
 
+The project follows a clean, layered architecture pattern:
+
 ```
 classifier_demo/
-├── classifier_demo/     # Main application package
-├── tests/              # Test files
-├── pyproject.toml      # Project configuration and dependencies
-├── Makefile           # Development commands
-└── README.md          # This file
+├── src/                    # Source code root
+│   └── classifier_demo/    # Main application package
+│       ├── api/           # API layer - FastAPI routes and endpoints
+│       ├── services/      # Service layer - Business logic and ML model integration
+│       ├── middleware/    # Middleware components (auth, logging, etc.)
+│       └── main.py        # Application entry point
+├── tests/                 # Test files
+├── pyproject.toml         # Project configuration and dependencies
+├── Makefile              # Development commands
+└── README.md             # This file
 ```
+
+### Architecture Layers
+
+- **API Layer** (`api/`): Handles HTTP requests/responses, input validation, and route definitions
+- **Service Layer** (`services/`): Contains business logic, ML model integration, and orchestrates data flow
+- **Middleware Layer** (`middleware/`): Provides cross-cutting concerns like authentication, logging, and error handling
