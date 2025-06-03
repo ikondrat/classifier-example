@@ -39,6 +39,12 @@ This will install all required dependencies using UV package manager.
 
 The project includes several development commands:
 
+- Run the application:
+
+```bash
+make run
+```
+
 - Run tests:
 
 ```bash

@@ -36,3 +36,8 @@ format:
 clean:
 	find . -name "__pycache__" -type d -exec rm -rf {} +
 
+.PHONY: run
+run: install
+	@echo "Starting FastAPI application..."
+	PYTHONPATH=$(PWD)/src uv run uvicorn classifier_demo.main:app --reload
+
