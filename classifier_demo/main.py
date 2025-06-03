@@ -27,7 +27,7 @@ async def lifespan(_: FastAPI):
 def create_app() -> FastAPI:
     """Create and configure the FastAPI application."""
     app = FastAPI(
-        title="Lightly Purple API", version="1.0.0", lifespan=lifespan
+        title="Classifier service API", version="1.0.0", lifespan=lifespan
     )
 
     # Add RPS tracker middleware
