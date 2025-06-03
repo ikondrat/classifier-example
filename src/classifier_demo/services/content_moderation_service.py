@@ -1,3 +1,5 @@
+"""Content Moderation Service."""
+
 import logging
 import time
 from collections import deque
@@ -34,22 +36,22 @@ class ContentModerationService:
         "V2": "Violence (Severe)",
     }
 
-    def __new__(cls, *args, **kwargs):
+    def __new__(cls, *args, **kwargs):  # noqa: ARG004
+        """Ensure singleton instance."""
         if cls._instance is None:
             cls._instance = super().__new__(cls)
         return cls._instance
 
     def __init__(self, model_name: str = "KoalaAI/Text-Moderation"):
+        """Initialize the content moderation service."""
         if not self._initialized:
             self.model_name = model_name
             self.tokenizer = AutoTokenizer.from_pretrained(model_name)
-            self.model = AutoModelForSequenceClassification.from_pretrained(
-                model_name
-            )
+            self.model = AutoModelForSequenceClassification.from_pretrained(model_name)
             self.model.eval()  # Set to evaluation mode
 
             # Request tracking
-            self.request_times = deque(maxlen=1000)  # Store last 1000 requests
+            self.request_times: deque = deque(maxlen=1000)  # Store last 1000 requests
             self.lock = Lock()
             self._initialized = True
             logger.info(
@@ -58,9 +60,7 @@ class ContentModerationService:
             )
 
     @classmethod
-    def initialize(
-        cls, model_name: str = "KoalaAI/Text-Moderation"
-    ) -> "ContentModerationService":
+    def initialize(cls, model_name: str = "KoalaAI/Text-Moderation") -> "ContentModerationService":
         """Initialize the service and download the model."""
         return cls(model_name)
 
@@ -89,9 +89,7 @@ class ContentModerationService:
             self.request_times.append(time.time())
 
         # Tokenize and prepare input
-        inputs = self.tokenizer(
-            text, return_tensors="pt", truncation=True, max_length=512
-        )
+        inputs = self.tokenizer(text, return_tensors="pt", truncation=True, max_length=512)
 
         # Run inference
         with torch.no_grad():
@@ -102,12 +100,7 @@ class ContentModerationService:
         labels = self.model.config.id2label
 
         # Create result dictionary with mapped categories
-        result = {
-            self.CATEGORY_MAPPING.get(labels[i], labels[i]): float(score)
-            for i, score in enumerate(scores)
-        }
-
-        return result
+        return {self.CATEGORY_MAPPING.get(labels[i], labels[i]): float(score) for i, score in enumerate(scores)}
 
     def cleanup(self):
         """Cleanup resources if needed."""
@@ -117,6 +110,4 @@ class ContentModerationService:
             self._initialized = False
             self._instance = None
         else:
-            logger.warning(
-                "ContentModerationService is not initialized, nothing to clean up."
-            )
+            logger.warning("ContentModerationService is not initialized.")

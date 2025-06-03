@@ -1,3 +1,5 @@
+"""Middleware to track requests per second (RPS) in a FastAPI application."""
+
 import logging
 import time
 from collections import deque
@@ -10,20 +12,25 @@ from starlette.responses import Response
 
 logger = logging.getLogger(__name__)
 
+
 class RPSTrackerMiddleware(BaseHTTPMiddleware):
+    """Middleware to track requests per second (RPS) in a FastAPI application."""
+
     def __init__(
         self,
         app,
         window_size: int = 60,  # Window size in seconds
         max_requests: int = 1000,  # Maximum number of requests to store
     ):
+        """Initialize the RPS Tracker Middleware."""
         super().__init__(app)
         self.window_size = window_size
-        self.request_times = deque(maxlen=max_requests)
+        self.request_times: deque = deque(maxlen=max_requests)
         self.lock = Lock()
         logger.info("RPS Tracker Middleware initialized with window size: %d seconds", window_size)
 
     async def dispatch(self, request: Request, call_next: Callable) -> Response:
+        """Process the request and track requests per second (RPS)."""
         # Record request time
         current_time = time.time()
         with self.lock:
@@ -38,12 +45,7 @@ class RPSTrackerMiddleware(BaseHTTPMiddleware):
         response = await call_next(request)
 
         # Log RPS after processing
-        logger.info(
-            "Request processed - Path: %s, Method: %s, RPS: %.2f",
-            request.url.path,
-            request.method,
-            rps
-        )
+        logger.info("Request processed - Path: %s, Method: %s, RPS: %.2f", request.url.path, request.method, rps)
 
         return response
 

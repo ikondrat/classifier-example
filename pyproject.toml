@@ -14,8 +14,16 @@ dependencies = [
 [dependency-groups]
 dev = [
     "black>=25.1.0",
+    "httpx>=0.28.1",
     "mypy>=1.16.0",
     "pytest>=8.4.0",
     "pytest-mock>=3.14.1",
     "ruff>=0.11.12",
+]
+
+[tool.mypy]
+
+exclude = [
+    "src/classifier_demo/main.py",
+    "src/classifier_demo/api/content_moderation_route.py"
 ]

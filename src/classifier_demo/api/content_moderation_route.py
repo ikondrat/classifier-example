@@ -5,7 +5,9 @@ from typing import Dict
 from fastapi import APIRouter, Depends
 from pydantic import BaseModel
 
-from services.content_moderation import ContentModerationService
+from classifier_demo.services.content_moderation_service import (
+    ContentModerationService,
+)
 
 router = APIRouter(prefix="/content-moderation", tags=["content-moderation"])
 

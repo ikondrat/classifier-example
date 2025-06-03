@@ -9,11 +9,22 @@
             "type": "debugpy",
             "request": "launch",
             "module": "uvicorn",
-            "args": ["main:app", "--reload", "--port", "8001"],
+            "args": ["classifier_demo.main:app", "--reload", "--port", "8001"],
             "envFile": "${workspaceFolder}/.env",
             "python": "${workspaceFolder}/.venv/bin/python",
             "cwd": "${workspaceFolder}/src",
             "jinja": true
+        },
+        {
+            "name": "Python: Debug Pytest file",
+            "type": "debugpy",
+            "request": "launch",
+            "module": "pytest",
+            "python": "${workspaceFolder}/.venv/bin/python",
+            "console": "integratedTerminal",
+            "justMyCode": true,
+            "args": ["${file}", "-vv"], // Verbose output for pytest
+            "purpose": ["debug-test"]
         }
     ]
 }

@@ -6,7 +6,7 @@ install:
 .PHONY: test
 test:
 	@echo "Running tests..."
-	uv run pytest
+	PYTHONPATH=$(PWD) uv run pytest
 
 .PHONY: lint
 lint:
@@ -16,7 +16,7 @@ lint:
 .PHONY: type-check
 type-check:
 	@echo "Checking types with mypy..."
-	uv run mypy --explicit-package-bases fastapi_seed
+	uv run mypy --explicit-package-bases src/classifier_demo
 
 .PHONY: format-check
 format-check:
@@ -32,4 +32,7 @@ format:
 	uv run ruff format
 	uv run ruff check --fix
 
+.PHONY: clean
+clean:
+	find . -name "__pycache__" -type d -exec rm -rf {} +
 
