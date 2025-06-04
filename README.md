@@ -24,7 +24,7 @@ This is a demo project for a classifier API. It uses a pre-trained model to clas
 
 ```bash
 git clone git@github.com:ikondrat/classifier-example.git
-cd classifier_demo
+cd classifier-example
 ```
 
 2. Install dependencies:
